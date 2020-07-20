@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FloatingDialog</string>
+    <string name="overlayText">Incoming Call</string>
 </resources>
