@@ -9,10 +9,21 @@
     android:background="@android:color/background_light"
     tools:ignore="MissingConstraints">
 
+
+    <ImageView
+        android:id="@+id/imageButton"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:layout_gravity="right|top|end"
+        android:onClick="closeWindow"
+        android:src="@drawable/close_red"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/overlayText"
         android:textSize="14pt"/>
+
 
 </LinearLayout>
