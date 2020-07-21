@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:layout_alignParentLeft="true"
-    android:background="#0090FF"
+    android:layout_height="match_parent"
+    android:background="#73FF0000"
     android:padding="10dp"
     android:keepScreenOn="true" >
-
-
-    <ImageView
-        android:id="@+id/closeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_gravity="right|top"
-        android:src="@drawable/close_red"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtIncomingnumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Incoming Call Number"
+        android:text="@string/incoming_call_number"
         android:textColor="#fff" />
 
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/close_image" />
 
-</LinearLayout>
+</RelativeLayout>
