@@ -5,28 +5,39 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public class CallReceiver extends BroadcastReceiver {
 
+    static String IncomingNumber;
     @Override
-    public void onReceive(Context context, Intent intent) {
-        TelephonyManager telephony = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        MyPhoneStateListener customPhoneListener = new MyPhoneStateListener(context);
+    public void onReceive(final Context context, Intent intent) {
+        TelephonyManager teleMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        PhoneStateListener psl = new PhoneStateListener() {
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                switch (state) {
+                    case TelephonyManager.CALL_STATE_RINGING:
+                        IncomingNumber = incomingNumber;
+                        Log.i("CallReceiverBroadcast", "Incoming call caught. Caller's number is " + incomingNumber + ".");
+                        Intent i = new Intent(context, IncomingCallService.class);
+                        context.startService(i);
+                    case TelephonyManager.CALL_STATE_IDLE:
+                        Log.i("CallReceiverBroadcast", "CALL_STATE_IDLE");
+                        IncomingCallService.clearView(context);
+                        // Call Disconnected
+                        break;
 
-        telephony.listen(customPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-
-        String stateStr = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
-        int state = 0;
-        if(stateStr.equals(TelephonyManager.EXTRA_STATE_IDLE)){
-            state = TelephonyManager.CALL_STATE_IDLE;
-        }
-        else if(stateStr.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)){
-            state = TelephonyManager.CALL_STATE_OFFHOOK;
-        }
-        else if(stateStr.equals(TelephonyManager.EXTRA_STATE_RINGING)){
-            state = TelephonyManager.CALL_STATE_RINGING;
-        }
-        customPhoneListener.onCallStateChanged(context, state);
+                    case TelephonyManager.CALL_STATE_OFFHOOK:
+                        Log.i("CallReceiverBroadcast", "CALL_STATE_OFFHOOK");
+                        IncomingCallService.clearView(context);
+                        // Call Answer Mode
+                        break;
+                }
+            }
+        };
+        teleMgr.listen(psl, PhoneStateListener.LISTEN_CALL_STATE);
+        teleMgr.listen(psl, PhoneStateListener.LISTEN_NONE);
     }
 
 }

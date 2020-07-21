@@ -2,28 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
-    android:background="@android:color/background_light"
-    tools:ignore="MissingConstraints">
+    android:layout_height="fill_parent"
+    android:layout_alignParentLeft="true"
+    android:background="#0090FF"
+    android:padding="10dp"
+    android:keepScreenOn="true" >
 
 
     <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="48dp"
-        android:layout_height="36dp"
-        android:layout_gravity="right|top|end"
-        android:onClick="closeWindow"
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="right|top"
         android:src="@drawable/close_red"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/txtIncomingnumber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/overlayText"
-        android:textSize="14pt"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Incoming Call Number"
+        android:textColor="#fff" />
 
 
 </LinearLayout>
