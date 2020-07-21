@@ -20,7 +20,6 @@ public class IncomingCallService extends Service {
     static WindowManager.LayoutParams params;
     private static TextView txtIncomingnumber;
     private static ImageView closeImage;
-    static boolean processingAction = false;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -48,7 +47,7 @@ public class IncomingCallService extends Service {
 
         wm.addView(view, params);
         txtIncomingnumber = view.findViewById(R.id.txtIncomingnumber);
-        txtIncomingnumber.setText("You have Incoming Call " + CallReceiver.IncomingNumber);
+        txtIncomingnumber.setText("You have Incoming Call ");
         txtIncomingnumber.setTextSize(26);
 
         closeImage = view.findViewById(R.id.closeButton);

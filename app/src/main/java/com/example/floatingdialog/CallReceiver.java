@@ -9,7 +9,6 @@ import android.util.Log;
 
 public class CallReceiver extends BroadcastReceiver {
 
-    static String IncomingNumber;
     @Override
     public void onReceive(final Context context, Intent intent) {
         TelephonyManager teleMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -18,8 +17,7 @@ public class CallReceiver extends BroadcastReceiver {
             public void onCallStateChanged(int state, String incomingNumber) {
                 switch (state) {
                     case TelephonyManager.CALL_STATE_RINGING:
-                        IncomingNumber = incomingNumber;
-                        Log.i("CallReceiverBroadcast", "Incoming call caught. Caller's number is " + incomingNumber + ".");
+                        Log.i("CallReceiverBroadcast", "Incoming call caught");
                         Intent i = new Intent(context, IncomingCallService.class);
                         context.startService(i);
                     case TelephonyManager.CALL_STATE_IDLE:
