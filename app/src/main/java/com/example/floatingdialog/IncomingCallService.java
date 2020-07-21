@@ -40,7 +40,6 @@ public class IncomingCallService extends Service {
                 PixelFormat.TRANSLUCENT);
 
         params.gravity = Gravity.RIGHT | Gravity.TOP;
-        params.flags |= WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
 
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
 
